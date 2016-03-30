@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CountDownTimer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="flipclock.css" media="screen" title="no title" charset="utf-8">
+    <style media="screen">
+      /*
+      Countdown Timer - Wants/Needs/Requirements
+        Functions -
+          User can choose a time in whole seconds, or by the minute and have the timer count down by the second
+
+          Additional features -
+            Add 5, 10, 30 seconds button to current countdown
+            Reset button will reset to originally selected time
+            Timer controls - start, pause, reset
+
+          User Selectable Options -
+            -Optional 10sec warning sound
+            -Warning sound
+      */
+      #clock {
+        border: 1px solid black;
+        margin: 10px;
+      }
+      .btn-sm {
+        margin-top: 10px;
+      }
+      .flip-clock-label {
+          display: none;
+        }
+    </style>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-12" id="clock">
+        <div class="col-sm-6">
+        <div id="clockface"></div>
+      </div>
+        <div class="col-sm-6">
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="col-sm-6">
+            <button type="button" name="reset" class="btn btn-success btn-lg btn-block" onClick=clock.start();>Start</button>
+            <button type="button" name="reset" class="btn btn-warning btn-lg btn-block" onClick=clock.stop();>Pause</button>
+            <button type="button" name="reset" class="btn btn-danger btn-lg btn-block" onClick=clock.reset();>Restart</button>
+            <button type="button" name="reset" class="btn btn-info btn-sm" onClick=addTime(5);>Add 5 Seconds</button>
+            <button type="button" name="reset" class="btn btn-info btn-sm" onClick=addTime(10);>Add 10 Seconds</button>
+            <button type="button" name="reset" class="btn btn-info btn-sm" onClick=addTime(30);>Add 30 Seconds</button>
+        </div>
+        <div class="col-sm-6">
+        <div class="col-sm-6">
+            <h4>Choose Start Time</h4>
+            <button type="button" name="reset" class="btn btn-default btn-sm" onClick=clock.setTime(10);>10 Seconds</button>
+            <button type="button" name="reset" class="btn btn-default btn-sm" onClick=clock.setTime(30);>30 Seconds</button>
+            <button type="button" name="reset" class="btn btn-default btn-sm" onClick=clock.setTime(45);>45 Seconds</button>
+            <button type="button" name="reset" class="btn btn-default btn-sm" onClick=clock.setTime(60);>1 Minute</button>
+            <button type="button" name="reset" class="btn btn-default btn-sm" onClick=clock.setTime(90);>1 Minute 30 Seconds</button>
+            <button type="button" name="reset" class="btn btn-default btn-sm" onClick=clock.setTime(120);>2 Minutes</button>
+        </div>
+        <div class="col-sm-6">
+            <h4>Or enter the time below:</h4>
+            <input type="tel" class="form-control" id="exampleInputName2" placeholder="Minutes">
+            <input type="tel" class="form-control" id="exampleInputName2" placeholder="Seconds">
+            <button type="button" name="reset" class="btn btn-primary btn-sm">Submit</button>
+        </div>
+      </div>
+      </div>
+      <div class="col-sm-12">
+        <h1>Optional Settings</h1>
+        <div class="checkbox">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox1" value="option1">Timer End Sound
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox2" value="option2">10 Second Warning Sound
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox3" value="option3">Test
+          </label>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <button type="button" name="reset" class="btn btn-success">Restart Timer</button>
+        <button type="button" name="reset" class="btn btn-danger">Clear</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="flipclock.min.js"></script>
+    <script type="text/javascript">
+
+    var clock = $('#clockface').FlipClock(0, {
+      autoStart: false,
+      countdown: true,
+      clockFace: 'MinuteCounter'
+    });
+
+    var addTime = function(addedTime) {
+      var total  = addedTime + (clock.getTime().time);
+      console.log(total);
+      //clock.reset();
+      clock.setTime(total);
+    }
+    </script>
+  </body>
+</html>
